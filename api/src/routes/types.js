@@ -18,10 +18,8 @@ router.get('/',async(req,res,next)=>{
         return Type.create({name:t.name})
       }) 
       await Promise.all(typeCreated).then(response=>{
-        //console.log(response)
         res.send(response)
       })
-      //console.log(typeCreated)
     } else{
       res.send(await Type.findAll())
     }
