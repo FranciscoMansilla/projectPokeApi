@@ -5,14 +5,10 @@ import { getAllPokemons } from "../../store/actions";
 
 export default function Home (){
   let pokemons = useSelector((state)=>state.pokemons)
-  console.log(pokemons)
 
-  let dispatch = useDispatch()
-
-  useEffect(()=>{
-    console.log('holla efect')
-    dispatch(getAllPokemons())
-  },[])
+  // useEffect(()=>{
+  //   dispatch(getAllPokemons())
+  // },[])
   
   return(
     <div>

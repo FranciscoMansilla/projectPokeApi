@@ -17,21 +17,21 @@ export function getAllPokemons() {
 export function getAllTypes() {
   return async function(dispatch) {
     return await axios.get("http://localhost:3001/pokemons/type")
-    .then(response => dispatch({ type: GET_ALL_TYPES, payload: response }))
+    .then(response => dispatch({ type: GET_ALL_TYPES, payload: response.data }))
   };
 }
 
 export function getPokemonByName(name) {
   return async function(dispatch) {
       return await axios.get(`http://localhost:3001/pokemons?name=${name}`)
-          .then(response => dispatch({ type: GET_POKEMON_BY_NAME, payload: response }))
+          .then(response => dispatch({ type: GET_POKEMON_BY_NAME, payload: response.data }))
   };
 }
 
 export function getPokemonById(id) {
   return async function(dispatch) {
       return await axios.get(`http://localhost:3001/pokemons/${id}`)
-          .then(response => dispatch({ type: GET_POKEMON_BY_ID, payload: response }))
+          .then(response => dispatch({ type: GET_POKEMON_BY_ID, payload: response.data }))
   };
 }
 
