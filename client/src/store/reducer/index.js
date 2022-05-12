@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   pokemons: [],
-  pokemonDetail:{},
+  pokemonDetail:[],
   filteredPokemons: []
 }
 

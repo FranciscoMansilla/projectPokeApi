@@ -1,29 +1,23 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
 import { getPokemonById } from "../../store/actions";
 
 
-export default function DetailPage (){
+export default function DetailPage (props){
   let pokemon = useSelector((state)=>state.pokemonDetail)
-  
-  let params = useParams();
-  console.log('params',params)
-  //let {id} = useParams();
+  const id = props.match.params.id
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   dispatch(getPokemonById(id))
-  // },[])
+  useEffect(()=>{
+    dispatch(getPokemonById(id))
+  },[])
   
   return(
     <div>
-      {/* {pokemon && <div>
+      {pokemon && <div>
         <h1>{pokemon.name}</h1> 
         <img src={pokemon.img} alt="asd" />
-      </div>} */}
-    id: {}
+      </div>}
     </div>
   )
 }
