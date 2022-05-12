@@ -84,7 +84,6 @@ router.post('/',async(req,res,next)=>{
         Type.findOne({ where: { name: el } })
       )
     )
-
     await pokemon.setTypes(listTypes);
     
     res.status(201).json(pokemon)
