@@ -21,14 +21,14 @@ class SearchBox extends React.Component{
     //let {onSearch} = this.props;
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
-              <input
-                type="text"
-                placeholder="Pokemon name..."
-                value={this.state.search}
-                onChange={e => this.setState({search: e.target.value})}
-              />
-              <input type="submit" value="🔎" />
-            </form>
+        <input
+          type="text"
+          placeholder="Pokemon name..."
+          value={this.state.search}
+          onChange={e => this.setState({search: e.target.value})}
+        />
+        <input type="submit" value="🔎" />
+      </form>
     )
   }
 }

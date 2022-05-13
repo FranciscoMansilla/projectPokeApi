@@ -8,7 +8,7 @@ export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
 
 export function getAllPokemons() {
   return async function(dispatch) {
-    await axios.get("http://localhost:3001/pokemons/1")
+    await axios.get("http://localhost:3001/pokemons/")
     .then(response => dispatch({ type: GET_ALL_POKEMONS, payload: response.data }))
     .catch((error)=>console.log(error))
     };
