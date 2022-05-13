@@ -16,7 +16,7 @@ export function getAllPokemons() {
 
 export function getAllTypes() {
   return async function(dispatch) {
-    return await axios.get("http://localhost:3001/pokemons/type")
+    return await axios.get("http://localhost:3001/types")
     .then(response => dispatch({ type: GET_ALL_TYPES, payload: response.data }))
   };
 }

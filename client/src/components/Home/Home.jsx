@@ -6,15 +6,15 @@ import SearchBox from "../SearchBox/SearchBox";
 
 
 export default function Home (){
-  let pokemons = useSelector((state)=>state.pokemonDetail)
-
-  // useEffect(()=>{
-  //   dispatch(getAllPokemons())
-  // },[])
+  let pokemons = useSelector((state)=>state.pokemons)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(!pokemons) dispatch(getAllPokemons())
+  },[])
   return(
     <div>
       <SearchBox />
-      {pokemons && <CardPokemon pokemon={pokemons} />}
+      {pokemons && pokemons.map(pokemon=><CardPokemon pokemon={pokemon} />)}
     </div>
   )
 }

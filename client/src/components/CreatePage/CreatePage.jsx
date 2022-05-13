@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 
 
 
@@ -7,21 +9,35 @@ export default function CreatePage (){
   const [state, setState] = useState({
     name: '',
     img: '',
-    hp: '',
-    attack: '',
-    defense: '',
-    speed: '',
-    height: '',
-    weight: '',
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    speed: 0,
+    height: 0,
+    weight: 0,
+    types:[]
   })
-
-  const dispatch = useDispatch();
+  const type_ = []
+  const types = useSelector((state)=>state.types)
+  function onSubmit(e){
+    e.preventDefault();
+    try {
+      console.log('envio',state)
+      axios.post('http://localhost:3001/pokemons',state)
+      .then(response=>{console.log(response.data)})
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  function onClick(e){
+    //e.preventDefault();
+    type_.push(e.target.value)
+    setState({...state,types: type_})
+  }
+  
   return(
     <div>
-        <form onSubmit={(e)=>{
-          e.preventDefault();
-        //  dispatch(createProduct(state));
-        }}>
+        <form onSubmit={onSubmit}>
           <label>Name: </label>
               <input 
                 type="text" 
@@ -88,10 +104,9 @@ export default function CreatePage (){
               onChange={e => setState({...state,weight: e.target.value})}
             />
           <br/>
-          <select>
+          <select onChange={onClick}>
             <option disabled="">Select Type</option>
-            <option value="Fire">Fire</option>
-            <option value="Sueño">Sueño</option>
+            {types && types.map(t=><option value={t.name} >{t.name}</option>)}
           </select>
           <br/>
 

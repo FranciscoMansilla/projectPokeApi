@@ -8,7 +8,8 @@ import {
 const initialState = {
   pokemons: [],
   pokemonDetail:[],
-  filteredPokemons: []
+  filteredPokemons: [],
+  types: []
 }
 
 export default function reducer(state = initialState, action) {
