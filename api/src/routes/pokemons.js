@@ -11,25 +11,29 @@ router.get('/', async (req,res,next)=>{
       include: Type
     })
     let findpoke = pokeDb.find(p=> name===p.name )
-    if(!findpoke){
-      let findpokeapi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      res.send({
-        id: findpokeapi.data.id,
-        name: findpokeapi.data.forms[0].name,
-        img: findpokeapi.data.sprites.front_default,
-        hp: findpokeapi.data.stats[0].base_stat,
-        attack: findpokeapi.data.stats[1].base_stat,
-        defense:findpokeapi.data.stats[2].base_stat,
-        speed:findpokeapi.data.stats[5].base_stat,
-        height:findpokeapi.data.height,
-        weight:findpokeapi.data.weight,
-        type: findpokeapi.data.types.map(t=>{
-          return {name:t.type.name}
+    try {
+      if(!findpoke){
+        let findpokeapi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        res.send({
+          id: findpokeapi.data.id,
+          name: findpokeapi.data.forms[0].name,
+          img: findpokeapi.data.sprites.front_default,
+          hp: findpokeapi.data.stats[0].base_stat,
+          attack: findpokeapi.data.stats[1].base_stat,
+          defense:findpokeapi.data.stats[2].base_stat,
+          speed:findpokeapi.data.stats[5].base_stat,
+          height:findpokeapi.data.height,
+          weight:findpokeapi.data.weight,
+          type: findpokeapi.data.types.map(t=>{
+            return {name:t.type.name}
+          })
         })
-      })
-  
-    }else{
-      res.send(findpoke)
+    
+      }else{
+        res.send(findpoke)
+      }
+    } catch (error) {
+      next(error)
     }
   } else {
     try {
@@ -77,8 +81,6 @@ router.post('/',async(req,res,next)=>{
     let pokemon = await Pokemon.create({
       name,img,hp,attack,defense,speed,height,weight
     })
-    //pokemon.addType({name:types.name})
-    
     let listTypes = await Promise.all(
       types.map((el) =>
         Type.findOne({ where: { name: el } })
@@ -94,36 +96,31 @@ router.post('/',async(req,res,next)=>{
 
 router.get('/:id', async (req,res,next)=>{
   let {id} = req.params
-  if(id>=1 && id<=40){
-    let findpokeapi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    //console.log(findpokeapi.data.name)
-    res.send({
-      id: findpokeapi.data.id,
-      name: findpokeapi.data.forms[0].name,
-      img: findpokeapi.data.sprites.front_default,
-      hp: findpokeapi.data.stats[0].base_stat,
-      attack: findpokeapi.data.stats[1].base_stat,
-      defense:findpokeapi.data.stats[2].base_stat,
-      speed:findpokeapi.data.stats[5].base_stat,
-      height:findpokeapi.data.height,
-      weight:findpokeapi.data.weight,
-      type: findpokeapi.data.types.map(t=>{
-        return {name:t.type.name}
+  try {
+    if(id>=1 && id<=40){
+      let findpokeapi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      res.send({
+        id: findpokeapi.data.id,
+        name: findpokeapi.data.forms[0].name,
+        img: findpokeapi.data.sprites.front_default,
+        hp: findpokeapi.data.stats[0].base_stat,
+        attack: findpokeapi.data.stats[1].base_stat,
+        defense:findpokeapi.data.stats[2].base_stat,
+        speed:findpokeapi.data.stats[5].base_stat,
+        height:findpokeapi.data.height,
+        weight:findpokeapi.data.weight,
+        type: findpokeapi.data.types.map(t=>{
+          return {name:t.type.name}
+        })
       })
-    })
-  }else{
-    // let pokeDb = await Pokemon.findAll()
-    // //console.log(pokeDb)
-    // let findpoke = pokeDb.find(p=> id===p.id )
-    let pokeDb = await Pokemon.findByPk(id,{
-      include: Type
-    })
-    //console.log(pokeDb)
-    if(pokeDb){
-      res.send(pokeDb)
     }else{
-      res.status(404).json({msg:'No se encontro pokemon con id: '+id})
+      let pokeDb = await Pokemon.findByPk(id,{
+        include: Type
+      })
+      res.send(pokeDb)
     }
+  } catch (error) {
+    next(error)
   }
 })
 

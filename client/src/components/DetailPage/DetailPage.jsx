@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getPokemonById } from "../../store/actions";
 
 
@@ -25,6 +26,9 @@ export default function DetailPage (props){
         <p>Weight: {pokemon.weight}</p>
         <p>Types: </p>
         { pokemon.type && pokemon.type.length>0 && pokemon.type.map(t=><p>•{t.name}</p>)}
+        <Link to='/n/home'>
+          <div><p>Close</p></div>
+        </Link>
       </div>}
     </div>
   )
