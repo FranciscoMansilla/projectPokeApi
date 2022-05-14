@@ -2,7 +2,8 @@ import {
   GET_ALL_TYPES,
   GET_ALL_POKEMONS,
   GET_POKEMON_BY_NAME,
-  GET_POKEMON_BY_ID
+  GET_POKEMON_BY_ID,
+  FILTER_INDEX_PAGINATED
 } from "../actions";
 
 const initialState = {
@@ -14,6 +15,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case FILTER_INDEX_PAGINATED:
+      return{
+        ...state,
+        filteredPokemons: action.payload
+      }
     case GET_ALL_TYPES:
       return{
         ...state,

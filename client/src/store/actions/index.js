@@ -4,7 +4,12 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
+export const FILTER_INDEX_PAGINATED = 'FILTER_INDEX_PAGINATED' 
 
+
+export function filterIndexPaginated(payload){
+  return {type:FILTER_INDEX_PAGINATED,payload}
+}
 
 export function getAllPokemons() {
   return async function(dispatch) {
