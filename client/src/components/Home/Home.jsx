@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterIndexPaginated, getAllPokemons } from "../../store/actions";
+import { filterIndexPaginated, getAllPokemons, getShowedPoke } from "../../store/actions";
 import CardPokemon from "../CardPokemon/CardPokemon";
 import OpcionBar from "../OpcionBar/OpcionBar";
 import SearchBox from "../SearchBox/SearchBox";
@@ -8,7 +8,8 @@ import SearchBox from "../SearchBox/SearchBox";
 
 export default function Home (){
   let pokemons = useSelector((state)=>state.pokemons)
-  let filteredPokemons = useSelector((state)=>state.filteredPokemons)
+  let showedPokemons = useSelector((state)=>state.showedPokemons)
+  let filteredPokemons = useSelector((state)=>state.paginatedPokemons)
   const dispatch = useDispatch()
   const[paginado, setPaginado] = useState(0)
   
@@ -30,7 +31,7 @@ export default function Home (){
   const onClickIndex = (e)=>{
     let value = e.target.value
     const _CANTIDAD_POKE_ = 12;
-    let pokemonfilte=pokemons.slice(((value-1)*_CANTIDAD_POKE_),(value*_CANTIDAD_POKE_))
+    let pokemonfilte=showedPokemons.slice(((value-1)*_CANTIDAD_POKE_),(value*_CANTIDAD_POKE_))
     dispatch(filterIndexPaginated(pokemonfilte))
   }
   useEffect(()=>{
@@ -38,15 +39,17 @@ export default function Home (){
       console.log('cargando pokemons')
       dispatch(getAllPokemons()) 
     }
-    if(pokemons.length>0){
-      console.log(nroPaginado(pokemons.length))
-      setPaginado(nroPaginado(pokemons.length))
+    if(pokemons.length>0 && showedPokemons.length<=0){
+      dispatch(getShowedPoke(pokemons))
     }
-    if(pokemons.length>0 && filteredPokemons.length<=0){
-      let pokemonfilte = pokemons.slice(0,12)
+    if(showedPokemons.length>0){
+      setPaginado(nroPaginado(showedPokemons.length))
+    }
+    if(showedPokemons.length>0 && filteredPokemons.length<=0){
+      let pokemonfilte = showedPokemons.slice(0,12)
       dispatch(filterIndexPaginated(pokemonfilte))
     }
-  },[pokemons])
+  },[pokemons,showedPokemons])
   
   return(
     <div>

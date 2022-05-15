@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons, getAllTypes } from "../../store/actions";
+import { getAllPokemons, getAllTypes, getShowedPoke, updateShowedPoke } from "../../store/actions";
 import { Link } from "react-router-dom";
 
 export default function OpcionBar (){
   let dispatch = useDispatch()
   let pokemons = useSelector((state)=>state.pokemons)
-
+  let showedPokemons = useSelector((state)=>state.showedPokemons)
+  let types = useSelector((state)=>state.types)
   
   const onChangeSort = (e)=>{
     let value = e.target.value
@@ -19,7 +20,8 @@ export default function OpcionBar (){
           return -1;}
         return 0;
       });
-      console.log(pokeSort)
+      dispatch(updateShowedPoke(pokeSort))
+      //console.log(pokeSort)
     }
     if(value==="Z-A"){
       let pokeSort =pokemons
@@ -30,7 +32,8 @@ export default function OpcionBar (){
           return -1;}
         return 0;
       });
-      console.log(pokeSort)
+      dispatch(updateShowedPoke(pokeSort))
+      //console.log(pokeSort)
     }
     if(value==="Ascendent"){
       let pokeSort =pokemons
@@ -41,7 +44,8 @@ export default function OpcionBar (){
           return -1;}
         return 0;
       });
-      console.log(pokeSort)
+      dispatch(updateShowedPoke(pokeSort))
+      //console.log(pokeSort)
     }
     if(value==="Descendent"){
       let pokeSort =pokemons
@@ -52,26 +56,43 @@ export default function OpcionBar (){
           return -1;}
         return 0;
       });
-      console.log(pokeSort)
+      dispatch(updateShowedPoke(pokeSort))
+      //console.log(pokeSort)
     }
   }
   const onChangeFilterByOrigin = (e)=>{
     if(e.target.value==='existing'){
       let pokefilter = pokemons.filter(p=>p.id>=1 && p.id<=40)
-      console.log(pokefilter)
+      dispatch(updateShowedPoke(pokefilter))
+      //console.log(pokefilter)
+      return
     }
     if(e.target.value==='created'){
       let pokefilter = pokemons.filter(p=>!(p.id>=1 && p.id<=40))
-      console.log(pokefilter)
+      //console.log(pokefilter)
+      dispatch(updateShowedPoke(pokefilter))
+      return
     }
     if(e.target.value==='all'){
-      console.log(pokemons)
+      dispatch(updateShowedPoke(pokemons))
+      //console.log(pokemons)
+      return
     }
   }
-  // useEffect(()=>{
-  //   dispatch(getAllPokemons())
-  //   dispatch(getAllTypes())
-  // },[])
+  const onChangeFilterTypes = (e)=>{
+    let type =  e.target.value
+    let pokeTypeFilter = []
+    pokemons.forEach(p=>{
+      p.type.forEach(t=> t.name ===type? pokeTypeFilter.push(p):null)
+    })
+    dispatch(updateShowedPoke(pokeTypeFilter))
+    //console.log(pokeTypeFilter)
+  }
+  useEffect(()=>{
+    if(types.length<=0){
+      dispatch(getAllTypes())
+    }
+  },[])
   return(
     <div>
       <label for="filter" class="">Sort by:</label>
@@ -96,8 +117,9 @@ export default function OpcionBar (){
       </select>
 
       <label for="filter" class=''>Filter by Type:</label>
-      <select name="filter" class="">
+      <select onChange={onChangeFilterTypes} name="filter" class="">
         <option value="all">All Pokemons</option>
+        {types.length>0 && types.map(t=><option value={t.name}>{t.name}</option>)}
       </select>
     </div>
   )

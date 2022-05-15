@@ -3,22 +3,36 @@ import {
   GET_ALL_POKEMONS,
   GET_POKEMON_BY_NAME,
   GET_POKEMON_BY_ID,
-  FILTER_INDEX_PAGINATED
+  FILTER_INDEX_PAGINATED,
+  GET_SHOWED_POKE,
+  UPDATE_SHOWED_POKE
 } from "../actions";
+
 
 const initialState = {
   pokemons: [],
   pokemonDetail:[],
-  filteredPokemons: [],
+  showedPokemons:[],
+  paginatedPokemons: [],
   types: []
 }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_SHOWED_POKE:
+      return{
+        ...state,
+        showedPokemons: action.payload
+      }
+    case GET_SHOWED_POKE:
+      return{
+        ...state,
+        showedPokemons: action.payload
+      }
     case FILTER_INDEX_PAGINATED:
       return{
         ...state,
-        filteredPokemons: action.payload
+        paginatedPokemons: action.payload
       }
     case GET_ALL_TYPES:
       return{
