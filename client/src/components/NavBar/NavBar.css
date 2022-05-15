@@ -1,0 +1,12 @@
+.divNav{
+  padding: 5px;   
+  background-color: rgb(69, 76, 118);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.text{
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
+}

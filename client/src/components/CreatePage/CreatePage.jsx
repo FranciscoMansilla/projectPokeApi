@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import CreatedPage from "../CreatedPage/CreatedPage";
 
 
 
@@ -17,6 +18,7 @@ export default function CreatePage (){
     weight: 0,
     types:[]
   })
+  const [flag, setFlag] = useState(false)
   const type_ = []
   const types = useSelector((state)=>state.types)
   function onSubmit(e){
@@ -24,7 +26,11 @@ export default function CreatePage (){
     try {
       console.log('envio',state)
       axios.post('http://localhost:3001/pokemons',state)
-      .then(response=>{console.log(response.data)})
+      .then(response=>{
+        console.log(response.data)
+        setFlag(true)
+        setState(response.data)
+        })
     } catch (error) {
       console.log(error)
     }
@@ -35,7 +41,9 @@ export default function CreatePage (){
     setState({...state,types: type_})
   }
   
+  if(!flag){
   return(
+    
     <div>
         <form onSubmit={onSubmit}>
           <label>Name: </label>
@@ -113,5 +121,14 @@ export default function CreatePage (){
           <button type="submit">Create Pokemon</button>
         </form>
       </div>
-  )
+  )} else{
+    return(
+      <div>
+        <h1>
+          {console.log('created page',state)}
+          <CreatedPage pokemon={state}/>
+        </h1>
+      </div>
+    )
+  }
 }

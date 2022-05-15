@@ -1,11 +1,11 @@
-
 import { Link } from "react-router-dom";
+
 
 
 
 export default function CardPokemon ({pokemon}){
   let {id,img,name,type} = pokemon
-  //console.log(props)
+  
   return(
     <div>
       <Link to={`/n/pokemon/${id}`}>

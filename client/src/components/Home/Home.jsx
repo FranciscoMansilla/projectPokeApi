@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterIndexPaginated, getAllPokemons, getShowedPoke } from "../../store/actions";
+import { filterIndexPaginated, getAllPokemons, getShowedPoke, setFlagFalse } from "../../store/actions";
 import CardPokemon from "../CardPokemon/CardPokemon";
 import OpcionBar from "../OpcionBar/OpcionBar";
 import SearchBox from "../SearchBox/SearchBox";
-
+import './Home.css'
 
 export default function Home (){
   let pokemons = useSelector((state)=>state.pokemons)
   let showedPokemons = useSelector((state)=>state.showedPokemons)
   let filteredPokemons = useSelector((state)=>state.paginatedPokemons)
+  let flag = useSelector((state)=>state.flag)
+
   const dispatch = useDispatch()
+  
   const[paginado, setPaginado] = useState(0)
   
   const nroPaginado = (long) =>{
@@ -23,17 +26,15 @@ export default function Home (){
     }
     return array
   }
-  // const indexFilter = (value)=>{
-  //   const _CANTIDAD_POKE_ = 12;
-  //   let pokemonfilte=pokemons.slice(((value-1)*_CANTIDAD_POKE_),(value*_CANTIDAD_POKE_)-1)
-  //   dispatch(filterIndexPaginated(pokemonfilte))
-  // }
   const onClickIndex = (e)=>{
     let value = e.target.value
     const _CANTIDAD_POKE_ = 12;
     let pokemonfilte=showedPokemons.slice(((value-1)*_CANTIDAD_POKE_),(value*_CANTIDAD_POKE_))
     dispatch(filterIndexPaginated(pokemonfilte))
   }
+  const setflag = ()=>{
+    dispatch(setFlagFalse())
+  } 
   useEffect(()=>{
     if(pokemons.length <= 0){
       console.log('cargando pokemons')
@@ -41,6 +42,7 @@ export default function Home (){
     }
     if(pokemons.length>0 && showedPokemons.length<=0){
       dispatch(getShowedPoke(pokemons))
+      console.log('holaa linea42')
     }
     if(showedPokemons.length>0){
       setPaginado(nroPaginado(showedPokemons.length))
@@ -50,14 +52,22 @@ export default function Home (){
       dispatch(filterIndexPaginated(pokemonfilte))
     }
   },[pokemons,showedPokemons])
-  
+  useEffect(()=>{
+    if(filteredPokemons.length>0){
+      showedPokemons.map(pokemon=>console.log(pokemon.name))
+    }
+  },[showedPokemons])
   return(
     <div>
-      <SearchBox />
-      <OpcionBar />
-      {filteredPokemons.length>0 && filteredPokemons.map(pokemon=><CardPokemon pokemon={pokemon} />)}
+      <div className="divHome">
+        <OpcionBar />
+        <SearchBox />
+      </div>
       <ul>
-        {paginado>0 && paginatedButton(paginado).map(n=><li><input onClick={onClickIndex} type="button" value={n}/></li>)}
+        {flag && showedPokemons.length>0 && filteredPokemons.map(pokemon=> <li><CardPokemon pokemon={pokemon} /></li> ) }
+      </ul>
+      <ul>
+        {paginado>0 && paginatedButton(paginado).map(n=><li><input onClick={onClickIndex} type="button" value={n}/></li>) }
       </ul>
     </div>
   )

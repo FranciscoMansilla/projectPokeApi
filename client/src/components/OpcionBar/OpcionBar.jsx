@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons, getAllTypes, getShowedPoke, updateShowedPoke } from "../../store/actions";
 import { Link } from "react-router-dom";
+import './OpcionBar.css'
 
 export default function OpcionBar (){
   let dispatch = useDispatch()
@@ -95,8 +96,8 @@ export default function OpcionBar (){
   },[])
   return(
     <div>
-      <label for="filter" class="">Sort by:</label>
-      <select onChange={onChangeSort} name="filter" class="">
+      <label className="textOpcionbar" >Sort by:</label>
+      <select onChange={onChangeSort} name="filter" >
         <option  value="select"></option>
         <optgroup label="By name:">
           <option value="A-Z">A-Z</option>
@@ -108,16 +109,16 @@ export default function OpcionBar (){
         </optgroup>
       </select>
 
-      <label for="filter" class="">Filter by Origin:</label>
-      <select onChange={onChangeFilterByOrigin} name="filter" class="">
+      <label className="textOpcionbar" >Filter by Origin:</label>
+      <select onChange={onChangeFilterByOrigin} name="filter" >
       <option  value="select"></option>
         <option value="all">All Pokemons</option>
         <option value="existing">Existing Pokemons</option>
         <option value="created">Created by User</option>
       </select>
 
-      <label for="filter" class=''>Filter by Type:</label>
-      <select onChange={onChangeFilterTypes} name="filter" class="">
+      <label className="textOpcionbar" >Filter by Type:</label>
+      <select onChange={onChangeFilterTypes} name="filter" >
         <option value="all">All Pokemons</option>
         {types.length>0 && types.map(t=><option value={t.name}>{t.name}</option>)}
       </select>

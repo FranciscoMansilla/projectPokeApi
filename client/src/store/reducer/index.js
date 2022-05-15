@@ -5,7 +5,8 @@ import {
   GET_POKEMON_BY_ID,
   FILTER_INDEX_PAGINATED,
   GET_SHOWED_POKE,
-  UPDATE_SHOWED_POKE
+  UPDATE_SHOWED_POKE,
+  SET_FLAG_FALSE
 } from "../actions";
 
 
@@ -14,20 +15,28 @@ const initialState = {
   pokemonDetail:[],
   showedPokemons:[],
   paginatedPokemons: [],
-  types: []
+  types: [],
+  flag: false
 }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case SET_FLAG_FALSE:
+      return{
+        ...state,
+        flag:false
+      }
     case UPDATE_SHOWED_POKE:
       return{
         ...state,
-        showedPokemons: action.payload
+        showedPokemons: action.payload,
+        flag: true
       }
     case GET_SHOWED_POKE:
       return{
         ...state,
-        showedPokemons: action.payload
+        showedPokemons: action.payload,
+        flag:true
       }
     case FILTER_INDEX_PAGINATED:
       return{

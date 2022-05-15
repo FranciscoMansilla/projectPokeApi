@@ -7,6 +7,11 @@ export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
 export const FILTER_INDEX_PAGINATED = 'FILTER_INDEX_PAGINATED' 
 export const GET_SHOWED_POKE = 'GET_SHOWED_POKE' 
 export const UPDATE_SHOWED_POKE = 'UPDATE_SHOWED_POKE'
+export const SET_FLAG_FALSE = 'SET_FLAG_FALSE'
+
+export function setFlagFalse(){
+  return {type:SET_FLAG_FALSE,payload:false}
+}
 
 export function getShowedPoke(payload){
   return {type:GET_SHOWED_POKE,payload}

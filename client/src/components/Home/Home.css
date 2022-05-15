@@ -1,0 +1,7 @@
+.divHome{
+  padding: 5px;   
+  background-color: rgb(85, 94, 146);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
