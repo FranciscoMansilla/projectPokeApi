@@ -1,7 +1,25 @@
 .divHome{
   padding: 5px;   
-  background-color: rgb(85, 94, 146);
+  background-color: rgb(199, 37, 37);
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.ulHome{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.ulHomePaginated{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+.liPaginated{
+  list-style:none;
+  margin: 4px;
+}
+.liCard{
+  list-style:none;
+  margin: 1em
 }

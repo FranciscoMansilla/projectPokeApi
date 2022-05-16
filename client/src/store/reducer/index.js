@@ -6,7 +6,8 @@ import {
   FILTER_INDEX_PAGINATED,
   GET_SHOWED_POKE,
   UPDATE_SHOWED_POKE,
-  SET_FLAG_FALSE
+  SET_FLAG_FALSE,
+  CLEAN_POKE_DETAIL
 } from "../actions";
 
 
@@ -21,6 +22,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case CLEAN_POKE_DETAIL:
+      return {
+        ...state, //spread operator ecma-script6
+        pokemonDetail:[]
+      }
     case SET_FLAG_FALSE:
       return{
         ...state,

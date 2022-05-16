@@ -8,6 +8,12 @@ export const FILTER_INDEX_PAGINATED = 'FILTER_INDEX_PAGINATED'
 export const GET_SHOWED_POKE = 'GET_SHOWED_POKE' 
 export const UPDATE_SHOWED_POKE = 'UPDATE_SHOWED_POKE'
 export const SET_FLAG_FALSE = 'SET_FLAG_FALSE'
+export const CLEAN_POKE_DETAIL ='CLEAN_POKE_DETAIL'
+
+
+export function cleanPokeDetail(){
+  return {type:CLEAN_POKE_DETAIL}
+}
 
 export function setFlagFalse(){
   return {type:SET_FLAG_FALSE,payload:false}

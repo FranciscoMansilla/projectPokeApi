@@ -63,11 +63,11 @@ export default function Home (){
         <OpcionBar />
         <SearchBox />
       </div>
-      <ul>
-        {flag && showedPokemons.length>0 && filteredPokemons.map(pokemon=> <li><CardPokemon pokemon={pokemon} /></li> ) }
+      <ul className="ulHome">
+        {flag && showedPokemons.length>0 && filteredPokemons.map(pokemon=> <li className="liCard"><CardPokemon pokemon={pokemon} /></li> ) }
       </ul>
-      <ul>
-        {paginado>0 && paginatedButton(paginado).map(n=><li><input onClick={onClickIndex} type="button" value={n}/></li>) }
+      <ul className="ulHomePaginated">
+        {paginado>0 && paginatedButton(paginado).map(n=><li className="liPaginated"><input onClick={onClickIndex} type="button" value={n}/></li>) }
       </ul>
     </div>
   )
