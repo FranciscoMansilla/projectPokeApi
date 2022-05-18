@@ -2,9 +2,10 @@
   background-color: rgb(199, 37, 37);
   padding: 2em;
   text-decoration: none;
-  height: 17em;
+  height: 19em;
   border-radius: 40px 10px;
   border: 3px solid black;
+  font-size: 20px;
 }
 .divScreenCard{
   background-color: beige;
@@ -12,8 +13,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 14em;
-  height: 10em;
+  width: 15em;
+  height: 13em;
   flex-direction: column;
   align-items: center;
 }
@@ -111,6 +112,6 @@
   border: 1px solid black;
 }
 .imgCard_7r9y{
-  height: 7em;
-  width: 7em;
+  height: 9em;
+  width: 9em;
 }

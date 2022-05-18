@@ -3,4 +3,8 @@
   align-items: center;
   justify-content: center;
   padding: 10em;
+  flex-direction: column;
+}
+.labelLoading_78qw{
+  font-size: 27px;
 }

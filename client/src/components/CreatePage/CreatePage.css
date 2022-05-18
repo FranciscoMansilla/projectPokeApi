@@ -2,8 +2,9 @@
   background-color: rgb(199, 37, 37);
   padding: 2em;
   text-decoration: none;
-  width: 45em;
-  height: 35em;
+  font-size: 20px;
+  /* width: 45em; */
+  height: 33em;
   border-radius: 40px 10px;
   border: 3px solid black;
 }
@@ -13,7 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 43em;
+  width: 44em;
   height: 25em;
   align-items: center;
   flex-direction: column;
@@ -45,7 +46,7 @@
 }
 .labelError_qw78{
   color: red;
-  font-size: 10px;
+  font-size: 15px;
 }
 .divScreenLeft_7w8q{
   display: flex;
