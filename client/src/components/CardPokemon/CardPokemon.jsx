@@ -19,7 +19,7 @@ export default function CardPokemon ({pokemon}){
               <label ><b>{name.charAt(0).toUpperCase() + name.slice(1)}</b></label>
               <div className="divCardImgText">
                 <div>
-                  <img src={img} alt="pokeImg" />
+                  <img className="imgCard_7r9y" src={img} alt="pokeImg" />
                 </div>
                 <div className="divCardText">
                   <label ><b>Type:</b></label>

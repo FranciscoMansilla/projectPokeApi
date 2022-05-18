@@ -14,6 +14,7 @@ class SearchBox extends React.Component{
   handleSubmit(event) {
     event.preventDefault();
     this.props.getPokemonByName(this.state.search)
+    //console.log(this.props)
     this.setState({search: ""})
   }
 

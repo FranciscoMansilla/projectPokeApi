@@ -6,7 +6,7 @@ import {
   FILTER_INDEX_PAGINATED,
   GET_SHOWED_POKE,
   UPDATE_SHOWED_POKE,
-  SET_FLAG_FALSE,
+  SORT,
   CLEAN_POKE_DETAIL
 } from "../actions";
 
@@ -27,22 +27,15 @@ export default function reducer(state = initialState, action) {
         ...state, //spread operator ecma-script6
         pokemonDetail:[]
       }
-    case SET_FLAG_FALSE:
-      return{
-        ...state,
-        flag:false
-      }
     case UPDATE_SHOWED_POKE:
       return{
         ...state,
         showedPokemons: action.payload,
-        flag: true
       }
     case GET_SHOWED_POKE:
       return{
         ...state,
         showedPokemons: action.payload,
-        flag:true
       }
     case FILTER_INDEX_PAGINATED:
       return{
@@ -65,9 +58,12 @@ export default function reducer(state = initialState, action) {
         pokemonDetail: action.payload
       }
     case GET_POKEMON_BY_NAME:
+      let array =[]
+      array.push(action.payload)
+      console.log(array)
       return{
         ...state,
-        pokemonDetail: action.payload
+        showedPokemons: array
       }
     default:
       return state;

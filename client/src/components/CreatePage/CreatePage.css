@@ -1,21 +1,20 @@
-
-.divCard_qw78{
+.divCard_qw14{
   background-color: rgb(199, 37, 37);
   padding: 2em;
   text-decoration: none;
-  
-  height: 30em;
+  width: 40em;
+  height: 35em;
   border-radius: 40px 10px;
   border: 3px solid black;
 }
-.divScreenCard_a6f4s{
+.divScreenCard_a6fza{
   background-color: beige;
   padding: 4px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 19em;
-  height: 19em;
+  width: 38em;
+  height: 25em;
   align-items: center;
   flex-direction: column;
 }
@@ -24,24 +23,13 @@
   color: rgb(56, 50, 50);
 
 }
-.divCardText_7qt8{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: column
-}
-.divCardImgText_4j5g{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.divScreenContorn{
+.divScreenContorn_w87z{
   padding: 7px;
   background-color: gray;
   border: 1px solid rgb(75 68 68);
   border-radius: 5px;
 }
-.divTotal_1xjk{
+.divTotal_1x79l{
   display: flex;
   justify-content: center;
   padding: 4em;
@@ -52,20 +40,10 @@
   border: 1px solid rgb(75 68 68);
   border-radius: 5px;
 }
-.divDeAbajo_79fd{
-  display: flex;
-  justify-content: center;
+.input_e7a8{
+  margin: 8px;
 }
-.buttonClose_u5o3{
-  margin-top: 5px;
-  background-color: gray;
-  border: 1.5px solid black;
-  border-radius: 2px;
-  text-decoration: none;
-  color: rgb(56, 50, 50);
-}
-.img_qw79{
-  padding: 1em;
-  height: 9em;
-  width: 9em;
+.labelError_qw78{
+  color: red;
+  font-size: 10px;
 }

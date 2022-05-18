@@ -13,8 +13,8 @@ export default function OpcionBar (){
   const onChangeSort = (e)=>{
     let value = e.target.value
     if(value==="A-Z"){
-      let pokeSort =pokemons
-      pokeSort.sort(function (a, b) {
+      let pokeSort =[...pokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
         if (a.name > b.name) {
           return 1;}
         if (a.name < b.name) {
@@ -25,8 +25,8 @@ export default function OpcionBar (){
       //console.log(pokeSort)
     }
     if(value==="Z-A"){
-      let pokeSort =pokemons
-      pokeSort.sort(function (a, b) {
+      let pokeSort =[...pokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
         if (a.name < b.name) {
           return 1;}
         if (a.name > b.name) {
@@ -37,8 +37,8 @@ export default function OpcionBar (){
       //console.log(pokeSort)
     }
     if(value==="Ascendent"){
-      let pokeSort =pokemons
-      pokeSort.sort(function (a, b) {
+      let pokeSort =[...pokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
         if (a.hp > b.hp) {
           return 1;}
         if (a.hp < b.hp) {
@@ -49,8 +49,8 @@ export default function OpcionBar (){
       //console.log(pokeSort)
     }
     if(value==="Descendent"){
-      let pokeSort =pokemons
-      pokeSort.sort(function (a, b) {
+      let pokeSort =[...pokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
         if (a.hp < b.hp) {
           return 1;}
         if (a.hp > b.hp) {
