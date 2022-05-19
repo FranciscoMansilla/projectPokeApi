@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getPokemonByName } from "../../store/actions";
-
-
+import './SearchBox.css'
 
 class SearchBox extends React.Component{
   constructor(props){
@@ -13,7 +12,7 @@ class SearchBox extends React.Component{
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getPokemonByName(this.state.search)
+    this.props.getPokemonByName(this.state.search.toLowerCase())
     //console.log(this.props)
     this.setState({search: ""})
   }
@@ -22,13 +21,13 @@ class SearchBox extends React.Component{
     //let {onSearch} = this.props;
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input
+        <input className="input_qwv3"
           type="text"
           placeholder="Pokemon name..."
           value={this.state.search}
           onChange={e => this.setState({search: e.target.value})}
         />
-        <input type="submit" value="🔎" />
+        <input className="inputButton_qwv3" type="submit" value="🔎" />
       </form>
     )
   }

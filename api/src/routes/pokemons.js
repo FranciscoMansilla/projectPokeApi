@@ -74,15 +74,15 @@ router.get('/', async (req,res,next)=>{
     
 })
 
-router.post('/',async(req,res,next)=>{
-  let {name,img,hp,attack,defense,speed,height,weight,types}=req.body
+router.post('/',async(req,res,next)=>{//types
+  let {name,img,hp,attack,defense,speed,height,weight,type}=req.body
   if(!name) return res.status(400).json({msg: 'falta el parametro "name"'})
   try {
     let pokemon = await Pokemon.create({
       name,img,hp,attack,defense,speed,height,weight
     })
     let listTypes = await Promise.all(
-      types.map((el) =>
+      type.map((el) =>
         Type.findOne({ where: { name: el } })
       )
     )

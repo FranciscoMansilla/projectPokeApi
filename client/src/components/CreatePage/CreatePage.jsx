@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllTypes } from "../../store/actions";
 import CreatedPage from "../CreatedPage/CreatedPage";
 import './CreatePage.css'
 
@@ -17,7 +18,7 @@ export default function CreatePage (){
     speed: 0,
     height: 0,
     weight: 0,
-    types:[]
+    type:[]
   })
   const [flag, setFlag] = useState(false)
   const [error, setError] = useState('')
@@ -39,18 +40,23 @@ export default function CreatePage (){
   }
   const validateName = (value)=>{
     if(!/^[a-zA-Z]+$/.test(value)){
-      setError('The name cannot contain \nsymbols or numbers')
+      setError('The name cannot contain symbols or numbers')
     } else{
       setError('')
     }
-    setState({...state, name:value})
+    setState({...state, name:value.toLowerCase()})
   }
-  function onClick(e){
+  function onChangeType(e){
     //e.preventDefault();
     type_.push(e.target.value)
-    setState({...state,types: type_})
+    setState({...state,type: type_})
   }
-  
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(types.length<=0){
+      dispatch(getAllTypes())
+    }
+  },[])
   if(!flag){
   return(
     
@@ -119,6 +125,16 @@ export default function CreatePage (){
                             onChange={e => setState({...state,defense: e.target.value})}
                           />
                         <br/>
+                        <label>Speed: </label>
+                          <input className="input_e7a8"
+                            type="range" 
+                            name='speed'
+                            min='0'
+                            max='100'
+                            value={state.speed}
+                            onChange={e => setState({...state,speed: e.target.value})}
+                          />
+                        <br/>
                         <label>Height: </label>
                           <input className="input_e7a8"
                             type="range" 
@@ -139,12 +155,12 @@ export default function CreatePage (){
                             onChange={e => setState({...state,weight: e.target.value})}
                           />
                         <br/>
-                        <select className="input_e7a8" onChange={onClick}>
+                        <select className="input_e7a8" onChange={onChangeType}>
                           <option disabled="">Select Type</option>
                           {types && types.map(t=><option value={t.name} >{t.name}</option>)}
                         </select>
                         <br/>
-                        <button disabled={!!error} type="submit">Create Pokemon</button>
+                        <button className="buttonSubmit_1h5j2" disabled={!!error} type="submit">Create Pokemon</button>
                       </form>
                     </div>
                   </div>

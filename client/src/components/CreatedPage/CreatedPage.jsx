@@ -1,12 +1,18 @@
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { getAllPokemons, getAllTypes, getShowedPoke } from "../../store/actions"
 import './CreatedPage.css'
 
 export default function CreatedPage ({pokemon}){
   //let {id,img,name,type} = pokemon
-  //console.log('ahora en en el componente ',pokemon.pokemon)
+  const dispatch = useDispatch();
+  // useEffect(()=>{
+  //   dispatch(getAllPokemons())
+  //   dispatch(getShowedPoke())
+  // },[])
   return( //divCard_79tr
     <div>
-      {/* <label>Created Pokemon</label> */}
       <div >
           <div className="divTotal_1x79a">
             <div className="divCard_79tr">
@@ -31,8 +37,8 @@ export default function CreatedPage ({pokemon}){
                       <label><b>Speed: </b>{pokemon.speed}</label>
                       <label><b>Height: </b>{pokemon.height}</label>
                       <label><b>Weight: </b>{pokemon.weight}</label>
-                      <label><b>Types: </b></label>
-                      { pokemon.type && pokemon.type.length>0 && pokemon.type.map(t=><label>  {t.name}</label>)}
+                      <label><b>Type: </b></label>
+                      { pokemon.type && pokemon.type.length>0 && pokemon.type.map(t=><label>{t}</label>)}
                     </div>
                   </div> 
                 </div>}

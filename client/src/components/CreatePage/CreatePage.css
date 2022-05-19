@@ -42,7 +42,10 @@
   border-radius: 5px;
 }
 .input_e7a8{
-  margin: 8px;
+  margin-bottom: 15px;
+  background-color: rgb(249, 249, 236);
+  font-family: monospace;
+  height: 22px;
 }
 .labelError_qw78{
   color: red;
@@ -55,4 +58,11 @@
   width: 20em;
   height: 35em;
   justify-content: center;
+}
+.buttonSubmit_1h5j2{
+  margin-top: 10px;
+  background-color: rgb(197, 197, 197);
+  font-family: monospace;
+  height: 27px;
+  border-radius: 5px;
 }

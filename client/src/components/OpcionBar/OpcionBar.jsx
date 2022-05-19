@@ -22,7 +22,6 @@ export default function OpcionBar (){
         return 0;
       });
       dispatch(updateShowedPoke(pokeSort))
-      //console.log(pokeSort)
     }
     if(value==="Z-A"){
       let pokeSort =[...pokemons]
@@ -95,9 +94,9 @@ export default function OpcionBar (){
     }
   },[])
   return(
-    <div>
+    <div >
       <label className="textOpcionbar" >Sort by:</label>
-      <select onChange={onChangeSort} name="filter" >
+      <select className="select_qw73" onChange={onChangeSort} name="filter" >
         <option  value="select"></option>
         <optgroup label="By name:">
           <option value="A-Z">A-Z</option>
@@ -110,7 +109,7 @@ export default function OpcionBar (){
       </select>
 
       <label className="textOpcionbar" >Filter by Origin:</label>
-      <select onChange={onChangeFilterByOrigin} name="filter" >
+      <select className="select_qw73" onChange={onChangeFilterByOrigin} name="filter" >
       <option  value="select"></option>
         <option value="all">All Pokemons</option>
         <option value="existing">Existing Pokemons</option>
@@ -118,7 +117,7 @@ export default function OpcionBar (){
       </select>
 
       <label className="textOpcionbar" >Filter by Type:</label>
-      <select onChange={onChangeFilterTypes} name="filter" >
+      <select className="select_qw73" onChange={onChangeFilterTypes} name="filter" >
         <option value="all">All Pokemons</option>
         {types.length>0 && types.map(t=><option value={t.name}>{t.name}</option>)}
       </select>

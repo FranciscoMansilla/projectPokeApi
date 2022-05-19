@@ -42,6 +42,7 @@ export default function DetailPage (props){
                       <label><b>Weight: </b>{pokemon.weight}</label>
                       <label><b>Types: </b></label>
                       { pokemon.type && pokemon.type.length>0 && pokemon.type.map(t=><label>  {t.name}</label>)}
+                      { pokemon.types && pokemon.types.length>0 && pokemon.types.map(t=><label>  {t.name}</label>)}
                     </div>
                   </div> 
                 </div>}

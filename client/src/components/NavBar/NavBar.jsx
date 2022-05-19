@@ -11,7 +11,7 @@ export default class NavBar extends Component {
                     {/* PokemonApp */}
                     <img className='imgLogo_9wtu' src={logo} alt="" />
                     </Link>
-                <Link className='text' to='/n/create/pokemon'> Create Pokemon</Link>
+                <Link className='buttonCreatePoke_rt77' to='/n/create/pokemon'> Create Pokemon</Link>
                 
             </div>
         )

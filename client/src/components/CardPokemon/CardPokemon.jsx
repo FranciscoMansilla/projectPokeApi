@@ -4,7 +4,7 @@ import './CardPokemon.css'
 
 
 export default function CardPokemon ({pokemon}){
-  let {id,img,name,type} = pokemon
+  let {id,img,name,type,types} = pokemon
   
   return(
       <Link className="pStyle" to={`/n/pokemon/${id}`}>
@@ -24,6 +24,7 @@ export default function CardPokemon ({pokemon}){
                 <div className="divCardText">
                   <label ><b>Type:</b></label>
                   {type && type.length>0 && type.map(t=><label>{t.name}</label>)}
+                  {types && types.length>0 && types.map(t=><label>{t.name}</label>)}
                 </div>
               </div>
           </div>

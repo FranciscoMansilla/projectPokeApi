@@ -59,7 +59,7 @@ export default function Home (){
           {paginatedPokemons.map(pokemon=> <li className="liCard"><CardPokemon pokemon={pokemon} /></li> ) }
         </ul>
         <ul className="ulHomePaginated">
-          {paginado>0 && paginatedButton(paginado).map(n=><li className="liPaginated"><input onClick={onClickIndex} type="button" value={n}/></li>) }
+          {paginado>0 && paginatedButton(paginado).map(n=><li className="liPaginated"><input className="paginatedButton_hl87" onClick={onClickIndex} type="button" value={n}/></li>) }
         </ul>
       </div>
     )
