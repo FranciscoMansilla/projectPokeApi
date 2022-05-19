@@ -7,6 +7,7 @@
   height: 27em;
   border-radius: 40px 10px;
   border: 3px solid black;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 .divScreenCard_a6f4s{
   background-color: beige;
@@ -63,6 +64,12 @@
   border-radius: 2px;
   text-decoration: none;
   color: rgb(56, 50, 50);
+}
+.buttonClose_u5o3:hover {
+  box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
+  outline-color: rgba(49, 138, 172, 0);
+  outline-offset: 80px;
+  text-shadow: 1px 1px 6px #fff;
 }
 .img_qw79{
   padding: 1em;
