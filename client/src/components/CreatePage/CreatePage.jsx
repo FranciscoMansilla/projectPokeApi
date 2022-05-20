@@ -23,7 +23,7 @@ export default function CreatePage (){
   const [flag, setFlag] = useState(false)
   const [error, setError] = useState('')
   const [pokeCreated, setPokeCreated] = useState('')
-  const type_ = []
+  var type_ = []
   const types = useSelector((state)=>state.types)
   function onSubmit(e){
     e.preventDefault();
@@ -47,9 +47,15 @@ export default function CreatePage (){
     setState({...state, name:value.toLowerCase()})
   }
   function onChangeType(e){
-    //e.preventDefault();
-    type_.push(e.target.value)
-    setState({...state,type: type_})
+    if(!state.type.includes(e.target.value)){
+      type_.push(e.target.value)
+      setState({...state,type: [...state.type,...type_]})
+    }
+  }
+  function deleteType(e){
+    let value= e.target.value
+    let newTypes = state.type.filter(t=>t!==value)
+    setState({...state,type: newTypes})
   }
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -75,6 +81,12 @@ export default function CreatePage (){
                     <div className="divScreenLeft_7w8q">
                       <h3>Create Pokemon</h3>
                       {state.img.length>0  && <img className="imgCard_7r9y" src={state.img} alt="" />}
+                      {state.type.length>0&& <label>Type: </label>}
+                      {state.type.length>0 && state.type.map(t=>
+                      <div>
+                        <label>{t}</label><button className="buttonClose_78fd" onClick={deleteType} value={t} >x</button>
+                      </div>
+                        )}
                       {error && <p className="labelError_qw78">{error}</p>}
                     </div>
                     <div className="divScreenRight_7w8q">

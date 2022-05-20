@@ -83,7 +83,12 @@ export default function OpcionBar (){
     let type =  e.target.value
     let pokeTypeFilter = []
     pokemons.forEach(p=>{
-      p.type.forEach(t=> t.name ===type? pokeTypeFilter.push(p):null)
+      if(p.type){
+        p.type.forEach(t=> t.name ===type? pokeTypeFilter.push(p):null)
+      }
+      if(p.types){
+        p.types.forEach(t=> t.name ===type? pokeTypeFilter.push(p):null)
+      }
     })
     dispatch(updateShowedPoke(pokeTypeFilter))
     //console.log(pokeTypeFilter)

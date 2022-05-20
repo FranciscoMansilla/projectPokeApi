@@ -74,3 +74,18 @@
   outline-offset: 80px;
   text-shadow: 1px 1px 6px #fff;
 }
+.buttonClose_78fd{
+  background-color: beige;
+    margin-left: 4px;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 3px;
+}
+.buttonClose_78fd:hover{
+  background-color: beige;
+    margin-left: 4px;
+    border-radius: 4px;
+    border: 1px solid red;
+    padding: 3px;
+    color: red;
+}
