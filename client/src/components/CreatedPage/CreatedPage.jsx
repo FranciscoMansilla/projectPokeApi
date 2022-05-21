@@ -1,17 +1,19 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { getAllPokemons, getAllTypes, getShowedPoke } from "../../store/actions"
+import { getAllPokemons, getShowedPoke } from "../../store/actions"
 import './CreatedPage.css'
 
 export default function CreatedPage ({pokemon}){
-  //let {id,img,name,type} = pokemon
   const dispatch = useDispatch();
-  // useEffect(()=>{
-  //   dispatch(getAllPokemons())
-  //   dispatch(getShowedPoke())
-  // },[])
-  return( //divCard_79tr
+  
+  useEffect(()=>{
+    setTimeout(function(){
+      dispatch(getAllPokemons())
+      dispatch(getShowedPoke([]))
+    }, 2000);
+  },[])
+  return( 
     <div>
       <div >
           <div className="divTotal_1x79a">

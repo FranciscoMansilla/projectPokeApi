@@ -21,7 +21,7 @@ export default function CreatePage (){
     type:[]
   })
   const [flag, setFlag] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState([])
   const [pokeCreated, setPokeCreated] = useState('')
   var type_ = []
   const types = useSelector((state)=>state.types)
@@ -39,12 +39,26 @@ export default function CreatePage (){
     }
   }
   const validateName = (value)=>{
+    let msg='The name cannot contain symbols or numbers'
     if(!/^[a-zA-Z]+$/.test(value)){
-      setError('The name cannot contain symbols or numbers')
+      if(!error.includes(msg)){
+        setError([...error,msg])
+      }
     } else{
-      setError('')
+      setError(error.filter(e=>e!==msg))
     }
     setState({...state, name:value.toLowerCase()})
+  }
+  const validateRange = (value,name)=>{
+    let msg=`${name} must be between 10 and 90`
+    if(value<10 || value>90){
+      if(!error.includes(msg)){
+        setError([...error,msg])
+      }
+    } else{
+      setError(error.filter(e=>e!==msg))
+    }
+    setState({...state, [name]:value})
   }
   function onChangeType(e){
     if(!state.type.includes(e.target.value)){
@@ -87,7 +101,7 @@ export default function CreatePage (){
                         <label>{t}</label><button className="buttonClose_78fd" onClick={deleteType} value={t} >x</button>
                       </div>
                         )}
-                      {error && <p className="labelError_qw78">{error}</p>}
+                      {error.length>0 && <p className="labelError_qw78">{error[0]}</p>}
                     </div>
                     <div className="divScreenRight_7w8q">
                       <form onSubmit={onSubmit}>
@@ -107,15 +121,16 @@ export default function CreatePage (){
                               onChange={e => setState({...state,img: e.target.value})}
                             />
                         <br/>
-                        <label>Hp: </label>
+                        <label>Hp: </label> 
                           <input className="input_e7a8"
                             type="range" 
                             name='hp'
                             min='0'
                             max='100'
                             value={state.hp}
-                            onChange={e => setState({...state,hp: e.target.value})}
-                          />
+                            //onChange={e => setState({...state,hp: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.hp}</label>
                         <br/>
                         <label>Attack: </label>
                           <input className="input_e7a8"
@@ -124,8 +139,9 @@ export default function CreatePage (){
                             min='0'
                             max='100'
                             value={state.attack}
-                            onChange={e => setState({...state,attack: e.target.value})}
-                          />
+                            //onChange={e => setState({...state,attack: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.attack}</label>
                         <br/>
                         <label>Defense: </label>
                           <input className="input_e7a8"
@@ -134,8 +150,9 @@ export default function CreatePage (){
                             min='0'
                             max='100'
                             value={state.defense}
-                            onChange={e => setState({...state,defense: e.target.value})}
-                          />
+                            // onChange={e => setState({...state,defense: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.defense}</label>
                         <br/>
                         <label>Speed: </label>
                           <input className="input_e7a8"
@@ -144,8 +161,9 @@ export default function CreatePage (){
                             min='0'
                             max='100'
                             value={state.speed}
-                            onChange={e => setState({...state,speed: e.target.value})}
-                          />
+                            // onChange={e => setState({...state,speed: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.speed}</label>
                         <br/>
                         <label>Height: </label>
                           <input className="input_e7a8"
@@ -154,8 +172,9 @@ export default function CreatePage (){
                             min='0'
                             max='100'
                             value={state.height}
-                            onChange={e => setState({...state,height: e.target.value})}
-                          />
+                            // onChange={e => setState({...state,height: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.height}</label>
                         <br/>
                         <label>Weight: </label>
                           <input className="input_e7a8"
@@ -164,15 +183,16 @@ export default function CreatePage (){
                             min='0'
                             max='100'
                             value={state.weight}
-                            onChange={e => setState({...state,weight: e.target.value})}
-                          />
+                            // onChange={e => setState({...state,weight: e.target.value})}
+                            onChange={e=>validateRange(e.target.value,e.target.name)}
+                          /><label>{state.weight}</label>
                         <br/>
                         <select className="input_e7a8" onChange={onChangeType}>
                           <option disabled="">Select Type</option>
                           {types && types.map(t=><option value={t.name} >{t.name}</option>)}
                         </select>
                         <br/>
-                        <button className="buttonSubmit_1h5j2" disabled={!!error} type="submit">Create Pokemon</button>
+                        <button className="buttonSubmit_1h5j2" disabled={!error.length<=0} type="submit">Create Pokemon</button>
                       </form>
                     </div>
                   </div>

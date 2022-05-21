@@ -13,12 +13,9 @@ class SearchBox extends React.Component{
   handleSubmit(event) {
     event.preventDefault();
     this.props.getPokemonByName(this.state.search.toLowerCase())
-    //console.log(this.props)
     this.setState({search: ""})
   }
-
   render(){
-    //let {onSearch} = this.props;
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <input className="input_qwv3"
@@ -32,7 +29,6 @@ class SearchBox extends React.Component{
     )
   }
 }
-//export default SearchBox;
 
 export function matchDispatchToProps(dispatch){
   return{
@@ -40,4 +36,3 @@ export function matchDispatchToProps(dispatch){
   }
 }
 export default connect(null,matchDispatchToProps)(SearchBox)
-

@@ -15,9 +15,7 @@ const initialState = {
   pokemons: [],
   pokemonDetail:[],
   showedPokemons:[],
-  paginatedPokemons: [],
   types: [],
-  flag: false
 }
 
 export default function reducer(state = initialState, action) {
@@ -37,11 +35,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         showedPokemons: action.payload,
       }
-    case FILTER_INDEX_PAGINATED:
-      return{
-        ...state,
-        paginatedPokemons: action.payload
-      }
     case GET_ALL_TYPES:
       return{
         ...state,
@@ -60,7 +53,6 @@ export default function reducer(state = initialState, action) {
     case GET_POKEMON_BY_NAME:
       let array =[]
       array.push(action.payload)
-      console.log(array)
       return{
         ...state,
         showedPokemons: array

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterIndexPaginated, getAllPokemons, getShowedPoke} from "../../store/actions";
+import { getAllPokemons, getShowedPoke} from "../../store/actions";
 import CardPokemon from "../CardPokemon/CardPokemon";
 import Loading from "../Loading/Loading";
 import OpcionBar from "../OpcionBar/OpcionBar";
