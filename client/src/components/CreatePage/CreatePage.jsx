@@ -28,7 +28,7 @@ export default function CreatePage (){
   function onSubmit(e){
     e.preventDefault();
     try {
-      axios.post('http://localhost:3001/pokemons',state)
+      axios.post('/pokemons',state)
       .then(response=>{
         console.log(response.data)
         setFlag(true)

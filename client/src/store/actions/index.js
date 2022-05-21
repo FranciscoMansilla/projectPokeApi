@@ -33,7 +33,7 @@ export function filterIndexPaginated(payload){
 
 export function getAllPokemons() {
   return async function(dispatch) {
-    await axios.get("http://localhost:3001/pokemons/")
+    await axios.get("/pokemons/")
     .then(response => dispatch({ type: GET_ALL_POKEMONS, payload: response.data }))
     .catch((error)=>console.log(error))
     };
@@ -41,21 +41,21 @@ export function getAllPokemons() {
 
 export function getAllTypes() {
   return async function(dispatch) {
-    return await axios.get("http://localhost:3001/types")
+    return await axios.get("/types")
     .then(response => dispatch({ type: GET_ALL_TYPES, payload: response.data }))
   };
 }
 
 export function getPokemonByName(name) {
   return async function(dispatch) {
-      return await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+      return await axios.get(`/pokemons?name=${name}`)
           .then(response => dispatch({ type: GET_POKEMON_BY_NAME, payload: response.data }))
   };
 }
 
 export function getPokemonById(id) {
   return async function(dispatch) {
-      return await axios.get(`http://localhost:3001/pokemons/${id}`)
+      return await axios.get(`/pokemons/${id}`)
           .then(response => dispatch({ type: GET_POKEMON_BY_ID, payload: response.data }))
   };
 }
