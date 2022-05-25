@@ -23,6 +23,7 @@ export default function CreatePage (){
   const [flag, setFlag] = useState(false)
   const [error, setError] = useState([])
   const [pokeCreated, setPokeCreated] = useState('')
+  
   var type_ = []
   const types = useSelector((state)=>state.types)
   function onSubmit(e){
@@ -70,6 +71,18 @@ export default function CreatePage (){
     let value= e.target.value
     let newTypes = state.type.filter(t=>t!==value)
     setState({...state,type: newTypes})
+  }
+  const disabledButton = ()=>{
+    if(state.name.length<=0)return true;
+    if(state.img.length<=0)return true;
+    if(state.hp<=0)return true;
+    if(state.attack<=0)return true;
+    if(state.defense<=0)return true;
+    if(state.speed<=0)return true;
+    if(state.height<=0)return true;
+    if(state.weight<=0)return true;
+    if(state.type.length<=0)return true;
+    return false
   }
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -192,7 +205,9 @@ export default function CreatePage (){
                           {types && types.map(t=><option value={t.name} >{t.name}</option>)}
                         </select>
                         <br/>
-                        <button className="buttonSubmit_1h5j2" disabled={!error.length<=0} type="submit">Create Pokemon</button>
+                        <button className="buttonSubmit_1h5j2" disabled={disabledButton() || !error.length<=0} type="submit">Create Pokemon</button>
+                        
+                        {/* <button className="buttonSubmit_1h5j2" disabled={state.name.length<=0 || !error.length<=0} type="submit">Create Pokemon</button> */}
                       </form>
                     </div>
                   </div>

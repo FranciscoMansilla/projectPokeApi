@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPokemons, getAllTypes, getShowedPoke, updateShowedPoke } from "../../store/actions";
-import { Link } from "react-router-dom";
+import { getAllTypes, updateShowedPoke } from "../../store/actions";
 import './OpcionBar.css'
 
 export default function OpcionBar (){
   let dispatch = useDispatch()
   let pokemons = useSelector((state)=>state.pokemons)
-  let showedPokemons = useSelector((state)=>state.showedPokemons)
   let types = useSelector((state)=>state.types)
   
   const onChangeSort = (e)=>{
@@ -64,18 +62,15 @@ export default function OpcionBar (){
     if(e.target.value==='existing'){
       let pokefilter = pokemons.filter(p=>p.id>=1 && p.id<=40)
       dispatch(updateShowedPoke(pokefilter))
-      //console.log(pokefilter)
       return
     }
     if(e.target.value==='created'){
       let pokefilter = pokemons.filter(p=>!(p.id>=1 && p.id<=40))
-      //console.log(pokefilter)
       dispatch(updateShowedPoke(pokefilter))
       return
     }
     if(e.target.value==='all'){
       dispatch(updateShowedPoke(pokemons))
-      //console.log(pokemons)
       return
     }
   }
@@ -91,7 +86,6 @@ export default function OpcionBar (){
       }
     })
     dispatch(updateShowedPoke(pokeTypeFilter))
-    //console.log(pokeTypeFilter)
   }
   useEffect(()=>{
     if(types.length<=0){

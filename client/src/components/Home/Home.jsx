@@ -10,12 +10,13 @@ import './Home.css'
 export default function Home (){
   let pokemons = useSelector((state)=>state.pokemons)
   let showedPokemons = useSelector((state)=>state.showedPokemons)
+  
   const dispatch = useDispatch()
   
   const [paginado, setPaginado] = useState(0)
-  
   const [paginatedPokemons, setPaginatedPokemons] = useState([])
   const [pagActual,setPagActual] = useState(0)
+  
   const nroPaginado = (long) =>{
     return Math.ceil(long / 12)
   }
