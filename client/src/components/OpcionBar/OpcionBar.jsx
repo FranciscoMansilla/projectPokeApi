@@ -7,11 +7,12 @@ export default function OpcionBar (){
   let dispatch = useDispatch()
   let pokemons = useSelector((state)=>state.pokemons)
   let types = useSelector((state)=>state.types)
+  let showedPokemons = useSelector((state)=>state.showedPokemons)
   
   const onChangeSort = (e)=>{
     let value = e.target.value
     if(value==="A-Z"){
-      let pokeSort =[...pokemons]
+      let pokeSort =[...showedPokemons]
       pokeSort= pokeSort.sort(function (a, b) {
         if (a.name > b.name) {
           return 1;}
@@ -22,7 +23,7 @@ export default function OpcionBar (){
       dispatch(updateShowedPoke(pokeSort))
     }
     if(value==="Z-A"){
-      let pokeSort =[...pokemons]
+      let pokeSort =[...showedPokemons]
       pokeSort= pokeSort.sort(function (a, b) {
         if (a.name < b.name) {
           return 1;}
@@ -34,7 +35,7 @@ export default function OpcionBar (){
       //console.log(pokeSort)
     }
     if(value==="Ascendent"){
-      let pokeSort =[...pokemons]
+      let pokeSort =[...showedPokemons]
       pokeSort= pokeSort.sort(function (a, b) {
         if (a.hp > b.hp) {
           return 1;}
@@ -46,7 +47,7 @@ export default function OpcionBar (){
       //console.log(pokeSort)
     }
     if(value==="Descendent"){
-      let pokeSort =[...pokemons]
+      let pokeSort =[...showedPokemons]
       pokeSort= pokeSort.sort(function (a, b) {
         if (a.hp < b.hp) {
           return 1;}
@@ -55,17 +56,41 @@ export default function OpcionBar (){
         return 0;
       });
       dispatch(updateShowedPoke(pokeSort))
+
       //console.log(pokeSort)
     }
+    if(value==="A_ascendent"){
+      let pokeSort =[...showedPokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
+        if (a.attack > b.attack) {
+          return 1;}
+        if (a.attack < b.attack) {
+          return -1;}
+        return 0;
+      });
+      dispatch(updateShowedPoke(pokeSort))
+      //console.log(pokeSort)
+    }
+    if(value==="A_descendent"){
+      let pokeSort =[...showedPokemons]
+      pokeSort= pokeSort.sort(function (a, b) {
+        if (a.attack < b.attack) {
+          return 1;}
+        if (a.attack > b.attack) {
+          return -1;}
+        return 0;
+      });
+      dispatch(updateShowedPoke(pokeSort))
   }
+}
   const onChangeFilterByOrigin = (e)=>{
     if(e.target.value==='existing'){
-      let pokefilter = pokemons.filter(p=>p.id>=1 && p.id<=40)
+      let pokefilter = showedPokemons.filter(p=>p.id>=1 && p.id<=40)
       dispatch(updateShowedPoke(pokefilter))
       return
     }
     if(e.target.value==='created'){
-      let pokefilter = pokemons.filter(p=>!(p.id>=1 && p.id<=40))
+      let pokefilter = showedPokemons.filter(p=>!(p.id>=1 && p.id<=40))
       dispatch(updateShowedPoke(pokefilter))
       return
     }
@@ -77,7 +102,7 @@ export default function OpcionBar (){
   const onChangeFilterTypes = (e)=>{
     let type =  e.target.value
     let pokeTypeFilter = []
-    pokemons.forEach(p=>{
+    showedPokemons.forEach(p=>{
       if(p.type){
         p.type.forEach(t=> t.name ===type? pokeTypeFilter.push(p):null)
       }
@@ -104,6 +129,11 @@ export default function OpcionBar (){
         <optgroup label="By Hp">
           <option value="Ascendent">Ascendent</option>
           <option value="Descendent">Descendent</option>
+          
+        </optgroup>
+        <optgroup label="By Atacck">
+          <option value="A_ascendent">Ascendent</option>
+          <option value="A_descendent">Descendent</option>
         </optgroup>
       </select>
 

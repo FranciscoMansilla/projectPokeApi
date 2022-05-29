@@ -4,19 +4,13 @@ export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
-export const FILTER_INDEX_PAGINATED = 'FILTER_INDEX_PAGINATED' 
 export const GET_SHOWED_POKE = 'GET_SHOWED_POKE' 
 export const UPDATE_SHOWED_POKE = 'UPDATE_SHOWED_POKE'
-export const SORT = 'SORT'
 export const CLEAN_POKE_DETAIL ='CLEAN_POKE_DETAIL'
 
 
 export function cleanPokeDetail(){
   return {type:CLEAN_POKE_DETAIL}
-}
-
-export function sort(payload){
-  return {type:SORT,payload}
 }
 
 export function getShowedPoke(payload){
@@ -25,10 +19,6 @@ export function getShowedPoke(payload){
 
 export function updateShowedPoke(payload){
   return {type:UPDATE_SHOWED_POKE,payload}
-}
-
-export function filterIndexPaginated(payload){
-  return {type:FILTER_INDEX_PAGINATED,payload}
 }
 
 export function getAllPokemons() {

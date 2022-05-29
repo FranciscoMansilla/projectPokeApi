@@ -6,8 +6,6 @@ import { getAllTypes } from "../../store/actions";
 import CreatedPage from "../CreatedPage/CreatedPage";
 import './CreatePage.css'
 
-
-
 export default function CreatePage (){
   const [state, setState] = useState({
     name: '',
