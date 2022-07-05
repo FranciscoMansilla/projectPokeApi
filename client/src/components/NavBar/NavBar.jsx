@@ -8,11 +8,16 @@ export default class NavBar extends Component {
         return (
             <div className='divNav'>
                 <Link className='text' to='/n/home'>
-                    {/* PokemonApp */}
                     <img className='imgLogo_9wtu' src={logo} alt="" />
+                </Link>
+                <div>
+                    <Link className='text' to='/n/home'>
+                        <img className='imgLogo_' src='https://cdn-icons-png.flaticon.com/512/25/25231.png' alt="" />
                     </Link>
-                <Link className='buttonCreatePoke_rt77' to='/n/create/pokemon'> Create Pokemon</Link>
-                
+                    <a href="https://www.linkedin.com/in/francisco-mansilla-5a6667237/">
+                        <img className='imgLogo_' src='https://cdn-icons-png.flaticon.com/512/61/61109.png' alt="" />
+                    </a>
+                </div>
             </div>
         )
     }

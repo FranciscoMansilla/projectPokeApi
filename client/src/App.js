@@ -31,10 +31,6 @@ function App() {
         exact path='/n/pokemon/:id'
         component={DetailPage}
       />
-      {/* <div className="App">
-        <h1>Henry Pokemon</h1>
-        <h1>Fraan</h1>
-      </div> */}
     </React.Fragment>
   );
 }

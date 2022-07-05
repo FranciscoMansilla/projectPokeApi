@@ -17,7 +17,7 @@ router.get('/', async (req,res,next)=>{
         res.send({
           id: findpokeapi.data.id,
           name: findpokeapi.data.forms[0].name,
-          img: findpokeapi.data.sprites.front_default, ///
+          img: findpokeapi.data.sprites.front_default, //
           hp: findpokeapi.data.stats[0].base_stat,
           attack: findpokeapi.data.stats[1].base_stat,
           defense:findpokeapi.data.stats[2].base_stat,

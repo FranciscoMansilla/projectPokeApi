@@ -48,7 +48,7 @@ export default function Home (){
       console.log(pokemonfilte)
     }
   },[pokemons,showedPokemons,pagActual])
-
+      
   if(showedPokemons.length>0){
     return(
       <div>

@@ -1,3 +1,6 @@
+.divSearch_{
+  display: flex;
+}
 .input_qwv3{
   background-color: beige;
   margin-left: 25px;
@@ -19,5 +22,24 @@
   outline-color: rgba(49, 138, 172, 0);
   outline-offset: 80px;
   text-shadow: 1px 1px 6px #fff;
+  transform: scale(1.02);
+
   /* border-shadow:  */
+}
+.buttonCreatePoke_rt77{
+  font-size: 15px;
+  padding: 3px;
+  text-decoration: none;
+  background-color: gray;
+  border: 3px solid black;
+  color: black;
+  border-radius: 4px;
+}
+.buttonCreatePoke_rt77:hover {
+  box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
+  outline-color: rgba(49, 138, 172, 0);
+  outline-offset: 80px;
+  text-shadow: 1px 1px 6px #fff;
+  transform: scale(1.02);
+
 }
